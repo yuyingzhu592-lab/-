@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#276749">
+  <title>评鉴 · 互动作品评级计算器</title>
+  <style>
+    :root{--bg:#f6f7f3;--paper:#fff;--ink:#25352e;--muted:#7b847e;--green:#276749;--light:#eaf2eb;--line:#e5e9e2;--gold:#bd9651;--radius:16px;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);font-synthesis:none}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);font-size:14px}button,input,textarea{font:inherit}button,a,input,textarea{ -webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #9ac5a5;outline-offset:3px}button{transition:background .15s,transform .15s}button:active:not(:disabled){transform:translateY(1px)}a{color:inherit;text-decoration:none}svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.sidebar{position:fixed;inset:0 auto 0 0;width:210px;background:var(--paper);border-right:1px solid var(--line);padding:32px 20px;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:11px;padding:0 12px}.brand-symbol{width:34px;height:36px;display:grid;grid-template-columns:repeat(2,13px);gap:4px;align-content:center;transform:rotate(-8deg)}.brand-symbol i{background:var(--green);border-radius:3px}.brand-symbol i:nth-child(2){background:#bed2a5}.brand-symbol i:nth-child(3){background:#d1d8c5}.brand-symbol i{height:13px}.brand strong{font-size:24px;letter-spacing:3px}.brand small{display:block;font-size:9px;color:var(--muted);letter-spacing:2px;margin-top:3px}.nav-label{font-size:10px;letter-spacing:2px;color:#9aA29b;margin:54px 13px 16px}.nav-item{display:flex;gap:11px;align-items:center;padding:13px;border:0;border-radius:9px;width:100%;background:transparent;color:#79827b;text-align:left;margin-bottom:7px}.nav-item.active{color:var(--green);background:var(--light);font-weight:600}.nav-item:hover{background:var(--bg)}.nav-item .dot{margin-left:auto;width:6px;height:6px;background:var(--green);border-radius:50%}.sidebar-bottom{margin-top:auto;padding:17px 12px 0;border-top:1px solid var(--line);font-size:11px;color:var(--muted);line-height:1.9}.privacy{display:flex;gap:7px;align-items:center;color:#5c6d5e}.privacy svg{width:14px;height:14px}.workspace{margin-left:210px}.topbar{height:76px;padding:0 38px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:#ffffffa8}.crumb{display:flex;gap:11px;align-items:center;color:var(--muted);font-size:12px}.crumb b{color:#435448;font-weight:500}.top-actions{display:flex;align-items:center;gap:17px}.save-state{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px}.save-state:before{content:"";width:5px;height:5px;background:#7c9d81;border-radius:50%}.avatar{width:30px;height:30px;background:#e8ecdf;border:3px solid white;border-radius:50%;display:grid;place-items:center;color:#617558;font-size:11px}main{max-width:1420px;margin:auto;padding:35px 38px 30px}.heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:27px}.eyebrow{display:flex;align-items:center;gap:8px;color:var(--green);font-size:10px;letter-spacing:2px;font-weight:600;margin-bottom:9px}.eyebrow:before{content:"";width:16px;height:2px;background:var(--green)}h1{font-size:29px;letter-spacing:1px;margin:0 0 10px;font-weight:650}.subtitle{font-size:12px;color:var(--muted);margin:0;line-height:1.8}.button{border:1px solid var(--line);background:white;color:#516155;padding:10px 15px;border-radius:8px;display:inline-flex;justify-content:center;align-items:center;gap:7px;font-size:12px;white-space:nowrap}.button:hover{background:#f1f5ee}.button.primary{background:var(--green);border-color:var(--green);color:white}.button.primary:hover{background:#1f563c}.button svg{width:15px;height:15px}.project-panel{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:22px;padding:20px 24px;background:white;border:1px solid var(--line);border-radius:12px;margin-bottom:27px}.field label{display:block;font-size:11px;color:#7b847e;margin-bottom:9px}.field input{border:0;border-bottom:1px solid transparent;width:100%;padding:3px 0 6px;outline:none;background:transparent;color:var(--ink);font-size:13px;min-width:0}.field input:focus{border-bottom-color:var(--green)}input::placeholder,textarea::placeholder{color:#adb4ad}.section-title{display:flex;justify-content:space-between;align-items:center;margin:0 0 16px}.section-title h2{font-size:14px;font-weight:600;margin:0;display:flex;align-items:center;gap:9px}.section-title h2:before{content:"";width:3px;height:14px;background:var(--green);border-radius:3px}.section-title span{font-size:11px;color:#899289}.layout{display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:24px;align-items:start}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.card{background:white;border:1px solid var(--line);border-radius:var(--radius);padding:22px 21px 17px;display:flex;flex-direction:column;min-width:0}.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.card-icon{width:37px;height:37px;display:grid;place-items:center;border-radius:10px;color:var(--green);background:#edf3e8}.card:nth-child(2) .card-icon{background:#f0edf6;color:#847596}.card:nth-child(3) .card-icon{background:#faf0df;color:#ae884b}.card:nth-child(4) .card-icon{background:#eaf1f6;color:#648397}.category-tag{font-size:10px;color:#90998f;letter-spacing:1px}.card h3{font-size:16px;letter-spacing:.5px;margin:0;display:flex;justify-content:space-between;align-items:center;gap:8px}.weight{font-weight:500;color:var(--green);background:var(--light);font-size:11px;padding:4px 7px;border-radius:5px;white-space:nowrap}.card-description{color:#939b94;font-size:11px;margin:8px 0 14px}.criteria{padding:0;list-style:none;counter-reset:item;margin:0 0 20px;flex:1}.criteria li{counter-increment:item;position:relative;padding-left:20px;font-size:12px;color:#778077;line-height:1.85;margin-bottom:6px}.criteria li:before{content:counter(item,decimal-leading-zero);position:absolute;left:0;top:1px;font-size:9px;color:#a1ada1;font-variant-numeric:tabular-nums}.score-block{padding-top:15px;border-top:1px dashed var(--line)}.score-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}.score-label{color:#7f897f;font-size:11px}.number-input{display:flex;align-items:baseline;gap:5px}.number-input input{width:70px;text-align:right;font-size:27px;font-weight:600;letter-spacing:-1px;color:var(--green);padding:1px 2px;background:transparent;border:0;border-radius:4px;font-variant-numeric:tabular-nums;-moz-appearance:textfield}.number-input input::-webkit-inner-spin-button{-webkit-appearance:none}.number-input input::placeholder{color:#b9c4b8}.number-input span{font-size:11px;color:#9ba49b}.range{width:100%;height:5px;border-radius:6px;appearance:none;background:linear-gradient(to right,var(--green) 0%,var(--green) var(--value,0%),#e9eee6 var(--value,0%),#e9eee6 100%);display:block;margin:5px 0 10px;cursor:pointer}.range::-webkit-slider-thumb{appearance:none;background:white;border:3px solid var(--green);box-shadow:0 1px 4px #23482a22;width:14px;height:14px;border-radius:50%}.range::-moz-range-thumb{background:white;border:3px solid var(--green);width:9px;height:9px;border-radius:50%}.scale{display:flex;justify-content:space-between;font-size:9px;color:#a4ada3}.contribution{margin-top:15px;font-size:10px;color:#909a90;display:flex;justify-content:space-between;align-items:center}.contribution b{font-size:12px;font-weight:500;color:#5f785e;font-variant-numeric:tabular-nums}.result-column{position:sticky;top:22px;grid-column:2;grid-row:1 / span 3}.result{border-radius:var(--radius);background:#fff;border:1px solid #dce5d7;overflow:hidden}.result-heading{padding:21px 22px 0;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600}.live-badge{font-size:9px;color:var(--green);background:var(--light);padding:5px 7px;border-radius:5px;font-weight:400}.live-badge:before{content:"";display:inline-block;width:4px;height:4px;border-radius:50%;background:#68976b;margin-right:5px;vertical-align:middle}.dial{position:relative;width:188px;height:188px;margin:22px auto 12px;display:grid;place-items:center}.dial svg{position:absolute;width:188px;height:188px;stroke:none;transform:rotate(-90deg)}.dial circle{fill:none;stroke-width:7}.dial .track{stroke:#eef2e9}.dial .progress{stroke:#719b67;stroke-linecap:round;stroke-dasharray:502.655;stroke-dashoffset:502.655;transition:stroke-dashoffset .35s}.dial-content{text-align:center;padding-top:4px}.dial-title{font-size:10px;color:#929c90;margin-bottom:6px}.total{font-size:48px;letter-spacing:-2px;line-height:1.2;font-weight:600;font-variant-numeric:tabular-nums;color:var(--green)}.total-unit{font-size:10px;color:#a0a99b;margin-top:6px}.grade-row{text-align:center;margin:0 20px 19px}.grade-label{display:inline-block;background:#f1f4eb;color:#5f7852;padding:6px 15px;border-radius:6px;font-size:11px}.completion{text-align:center;font-size:10px;color:#a1aa9e;margin-top:10px}.breakdown{margin:0 22px;padding:18px 0 8px;border-top:1px solid var(--line)}.break-row{display:grid;grid-template-columns:8px 1fr auto;gap:7px;align-items:center;margin-bottom:13px;font-size:11px;color:#859080}.break-dot{width:5px;height:5px;border-radius:2px;background:#74956c}.break-row:nth-child(2) .break-dot{background:#a190b2}.break-row:nth-child(3) .break-dot{background:#c6a56b}.break-row:nth-child(4) .break-dot{background:#8aa5b7}.break-row b{font-weight:500;color:#52694c;font-variant-numeric:tabular-nums}.result-actions{display:grid;gap:9px;padding:7px 22px 21px}.result-actions .button{width:100%;padding:11px}.secondary-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.formula-note{background:#f5f7f0;padding:12px 20px;font-size:9px;color:#8a967f;text-align:center;line-height:1.8}.rule-card{padding:19px 20px;border:1px solid var(--line);border-radius:12px;margin-top:16px;background:#f0f2e9}.rule-title{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:#63725b}.text-button{border:0;background:none;padding:0;color:var(--green);font-size:10px;text-decoration:underline;text-underline-offset:3px}.grade-scale{display:flex;justify-content:space-between;margin-top:17px}.grade-scale div{text-align:center}.grade-scale strong{display:block;font-size:13px;color:#718368;font-weight:500}.grade-scale span{font-size:9px;color:#9aa38f;display:block;margin-top:5px}.rule-footnote{font-size:9px;color:#9ca493;line-height:1.7;margin:15px 0 0}.notes{min-width:0}.notes textarea{display:block;width:100%;height:90px;resize:vertical;background:white;border:1px solid var(--line);border-radius:11px;padding:14px;color:#51624f;font-size:12px;line-height:1.8}.history{min-width:0}.empty-history{padding:24px;border:1px dashed #dce2d6;border-radius:11px;color:#939d8d;font-size:11px;text-align:center}.history-list{display:grid;gap:9px}.history-item{display:flex;align-items:center;justify-content:space-between;gap:12px;background:white;border:1px solid var(--line);border-radius:10px;padding:14px 17px}.history-name{font-size:12px;margin-bottom:5px;overflow-wrap:anywhere}.history-meta{font-size:10px;color:#97a08f}.history-controls{display:flex;align-items:center;gap:12px;flex-shrink:0}.history-score{color:var(--green);font-weight:600}.icon-button{border:0;background:transparent;color:#8c9785;padding:5px;display:grid;place-items:center;border-radius:5px}.icon-button:hover{background:var(--light)}.icon-button svg{width:15px;height:15px}.page-footer{margin-top:29px;display:flex;justify-content:space-between;align-items:center;font-size:9px;color:#a4ad9b;letter-spacing:.3px}.footer-brand{font-size:10px;color:#8b9981}.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);padding:12px 22px;background:#263f2e;color:white;box-shadow:0 8px 32px #1c3a2422;border-radius:9px;font-size:12px;z-index:100;max-width:90vw;text-align:center}.toast[hidden]{display:none}dialog{border:1px solid var(--line);border-radius:16px;width:min(540px,calc(100% - 32px));padding:27px;color:var(--ink);box-shadow:0 25px 80px #1d3b2933}dialog::backdrop{background:#1d35284d;backdrop-filter:blur(3px)}.dialog-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:17px}dialog h2{font-size:18px;margin:0}dialog p{font-size:12px;line-height:1.9;color:var(--muted)}.rules-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}.rules-grid label{font-size:11px;color:#7b8973}.rules-grid input{display:block;margin-top:9px;width:100%;border:1px solid var(--line);border-radius:7px;padding:10px;color:var(--green)}.dialog-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}.error{color:#ad4f41!important;font-size:11px;min-height:18px}.standard-group{margin-top:18px}.standard-group h3{font-size:13px}.standard-group p{margin:6px 0;font-size:11px}.standards-dialog{max-height:85vh;overflow:auto}.mobile-brand{display:none}.print-only{display:none}.invalid{box-shadow:0 0 0 2px #d98f7f}
+    @media(min-width:1600px){main{padding-top:45px}.card{padding:25px}.criteria li{font-size:12px}.card-description{margin-bottom:18px}}
+    @media(max-width:1200px){.sidebar{width:170px;padding-inline:13px}.workspace{margin-left:170px}.topbar{padding-inline:25px}main{padding:28px 25px}.layout{grid-template-columns:minmax(0,1fr) 265px;gap:18px}.card{padding:18px 16px}.cards{gap:13px}.criteria li{font-size:10px}.card h3{font-size:14px}.category-tag{font-size:9px;letter-spacing:0}}
+    @media(max-width:1000px){.sidebar{display:none}.workspace{margin-left:0}.mobile-brand{display:inline;font-weight:600;color:var(--green);margin-right:9px}.layout{grid-template-columns:minmax(0,1fr) 270px}.criteria li{font-size:11px}}
+    @media(max-width:760px){.topbar{height:59px;padding:0 20px}.crumb{font-size:11px;gap:7px}.top-actions{gap:9px}.avatar{display:none}.save-state{font-size:9px}main{padding:25px 18px}.heading{gap:10px;align-items:flex-start}.heading .button{font-size:10px;padding:9px 10px;margin-top:22px}h1{font-size:25px}.subtitle{font-size:10px;max-width:250px}.eyebrow{font-size:9px}.project-panel{padding:17px;gap:15px;grid-template-columns:1fr 1fr;margin-bottom:23px}.field:first-child{grid-column:1/-1}.layout{display:flex;flex-direction:column;gap:23px}.scoring-column,.result-column,.notes,.history{width:100%}.scoring-column{order:0}.result-column{position:static;order:1}.notes{order:2}.history{order:3}.card h3{font-size:15px}.cards{gap:12px}.card{padding:17px}.criteria li{font-size:11px}.category-tag{font-size:8px}.section-title span{font-size:10px}.result{display:grid;grid-template-columns:1fr 1fr;align-items:start}.result-heading{grid-column:1/-1}.dial{grid-row:2;margin:15px auto 7px}.grade-row{grid-column:1;grid-row:3}.breakdown{grid-column:2;grid-row:2;border-top:0;margin-top:22px}.result-actions{grid-column:2;grid-row:3;padding-top:0}.formula-note{grid-column:1/-1}.rule-card{padding:17px}.grade-scale{justify-content:flex-start;gap:35px}.page-footer{gap:15px;line-height:1.7}.history-item{padding:13px}.history-controls{gap:7px}}
+    @media(max-width:440px){.cards{grid-template-columns:1fr}.card{padding:21px}.criteria li{font-size:12px}.category-tag{font-size:10px}.card h3{font-size:17px}.number-input input{font-size:30px}.dial{width:158px;height:158px}.dial svg{width:158px;height:158px}.total{font-size:40px}.breakdown{margin-left:0;margin-right:16px}.result-actions{padding-left:0;padding-right:16px}.grade-row{margin-inline:10px}.result-actions .button{padding:10px 8px;font-size:10px}.grade-scale{justify-content:space-between;gap:0}.history-meta{font-size:9px}.rules-grid{gap:8px}.history-score{font-size:12px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
+    @media print{body{background:white;font-size:11px;-webkit-print-color-adjust:exact;print-color-adjust:exact}.sidebar,.topbar,.heading>.button,.range,.scale,.result-actions,.rule-title button,.history,.page-footer,dialog,.toast{display:none!important}.workspace{margin:0}main{padding:0;max-width:none}.heading{margin-bottom:16px}h1{font-size:23px}.project-panel{padding:12px 16px;margin-bottom:20px}.layout{display:block}.scoring-column{width:100%}.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{padding:15px;break-inside:avoid}.criteria li{font-size:10px}.card-top{margin-bottom:10px}.result-column{position:static;width:100%;margin-top:18px}.result{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-around;padding:12px}.result-heading{width:100%;padding:0 5px}.dial{width:120px;height:120px;margin:0}.dial svg{width:120px;height:120px}.total{font-size:32px}.grade-row{margin:0}.breakdown{width:190px;border:0;margin:0}.formula-note{width:100%;margin-top:10px}.rule-card{margin-top:12px;padding:12px}.grade-scale{justify-content:flex-start;gap:32px}.rule-footnote{margin-top:10px}.notes{break-inside:avoid}.notes textarea{display:none}.print-only{display:block;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8;color:#52624c;padding:12px;border:1px solid var(--line);border-radius:8px}.print-only:empty{display:none}}
+
+    /* Four dimensions, five direct score choices per dimension. */
+    .scoring-guide{font-size:11px;color:#7b8973;line-height:1.9;margin:0 0 17px;padding:11px 14px;background:#edf2e8;border-radius:8px}.scoring-guide span{display:block;font-size:10px;color:#98a28e}
+    .score-block{border-top:0;padding-top:8px}.score-row{margin-bottom:14px}.dimension-grade{font-size:11px;color:var(--green);background:var(--light);padding:4px 8px;border-radius:5px}.score-buttons{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}.score-button{height:48px;border:1px solid #dfe7d9;border-radius:9px;background:#f8faf5;color:#788d6e;font-size:19px;font-weight:600}.score-button:hover{border-color:#a0bb91;background:#edf4e6}.score-button[aria-checked="true"]{background:var(--green);border-color:var(--green);color:white;box-shadow:0 3px 8px #27674924}.criteria-reference{margin-top:20px;padding-top:14px;border-top:1px dashed var(--line);font-size:11px;color:#909a87}.criteria-reference summary{cursor:pointer;width:fit-content;line-height:1.8}.criteria-reference .criteria{margin:13px 0 0}.criteria-reference li{font-size:11px}.contribution{margin-top:17px}.c-rule{font-size:11px;color:#7b8973;padding-top:1px}.c-rule span{display:block;font-size:11px;color:#98a38f;margin-top:20px}.legacy-notice{display:flex;align-items:center;justify-content:space-between;gap:15px;font-size:11px;line-height:1.8;border:1px solid #e2e5ce;background:#f6f6e9;color:#818566;border-radius:9px;padding:12px 16px;margin-bottom:20px}.legacy-notice[hidden]{display:none}.legacy-notice button{flex-shrink:0}.total{font-size:44px}
+    @media(max-width:760px){.legacy-notice{flex-wrap:wrap}.total{font-size:39px}.scoring-guide{font-size:10px}.score-buttons{gap:7px}}
+    @media print{.legacy-notice,.criteria-reference{display:none!important}.score-button{height:35px;font-size:15px;cursor:default}.scoring-guide{margin-bottom:10px;padding:6px 10px}.total{font-size:32px}.layout{display:flex;flex-direction:column}.scoring-column{order:0}.result-column{order:1}.notes{order:2;width:100%}}
+  </style>
+</head>
+<body>
+  <aside class="sidebar" aria-label="主导航">
+    <a class="brand" href="#"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><strong>评鉴</strong><small>STORY REVIEW</small></span></a>
+    <div class="nav-label">评 审 空 间</div>
+    <a class="nav-item active" href="#workspace"><svg><use href="#i-grid"/></svg>评分工作台<span class="dot"></span></a>
+    <button class="nav-item" id="standards-nav"><svg><use href="#i-book"/></svg>评分标准</button>
+    <a class="nav-item" href="#history"><svg><use href="#i-clock"/></svg>评审记录</a>
+    <div class="sidebar-bottom"><div class="privacy"><svg><use href="#i-shield"/></svg>数据仅保存在本机</div>让每一次评价，都有依据。<br><span style="font-size:9px;color:#a9b0a4">评鉴 · 内部评审工具 / V3.0</span></div>
+  </aside>
+  <div class="workspace" id="workspace">
+    <header class="topbar"><div class="crumb"><span class="mobile-brand">评鉴</span><span>评审空间</span><span style="color:#c3c9bd">/</span><b>评分工作台</b></div><div class="top-actions"><span class="save-state" id="save-state" role="status">草稿自动保存于本机</span><span class="avatar" aria-hidden="true">评</span></div></header>
+    <main>
+      <div class="heading"><div><div class="eyebrow">INTERACTIVE STORY EVALUATION</div><h1>作品评级计算器</h1><p class="subtitle">从故事到体验，用统一的标准，记录你的专业判断。</p></div><button class="button" id="reset"><svg><use href="#i-plus"/></svg>新建评审</button></div>
+      <section class="project-panel" aria-label="评审信息">
+        <div class="field"><label for="project">作品名称</label><input id="project" maxlength="100" placeholder="输入本次评审的作品名称" autocomplete="off"></div>
+        <div class="field"><label for="reviewer">评审人</label><input id="reviewer" maxlength="50" placeholder="你的姓名" autocomplete="name"></div>
+        <div class="field"><label for="review-date">评审日期</label><input id="review-date" type="date" aria-label="评审日期"></div>
+      </section>
+      <div class="legacy-notice" id="legacy-notice" hidden><span>旧版十分制和逐项评分数据仍保留，可下载备份。当前按四个大指标评分。</span><button class="text-button" id="export-legacy">下载旧版数据备份</button></div>
+      <div class="layout">
+        <div class="scoring-column">
+          <div class="section-title"><h2>维度评分</h2><span>四个大指标 · 点击 1–5 分</span></div>
+          <p class="scoring-guide">1 明显不足 · 2 待改进 · 3 达标 · 4 良好 · 5 优秀<span>每项点击一个分数即可，小指标仅作参考</span></p>
+          <div class="cards" id="cards"></div>
+        </div>
+          <section class="notes"><div class="section-title"><h2>评审备注</h2><span>可选</span></div><textarea id="notes" maxlength="3000" placeholder="记录作品的亮点、改进建议，或本次评分的依据…" aria-label="评审备注"></textarea><div class="print-only" id="print-notes"></div></section>
+          <section class="history" id="history"><div class="section-title"><h2>评审记录</h2><span id="history-count">仅此浏览器可见</span></div><div class="history-list" id="history-list"></div></section>
+        <aside class="result-column" aria-label="评审结果">
+          <section class="result">
+            <div class="result-heading">综合评审结果<span class="live-badge">实时计算</span></div>
+            <div class="dial"><svg viewBox="0 0 188 188" aria-hidden="true"><circle class="track" cx="94" cy="94" r="80"/><circle class="progress" id="progress-ring" cx="94" cy="94" r="80"/></svg><div class="dial-content"><div class="dial-title" id="total-title">等待评分</div><div class="total" id="total">—</div><div class="total-unit">满分 5 分 · 原权重加权</div></div></div>
+            <div class="grade-row"><span class="grade-label" id="grade">尚未完成评分</span><div class="completion" id="completion">已完成 0 / 4 个大指标</div></div>
+            <div class="breakdown" id="breakdown"></div>
+            <div class="result-actions"><button class="button primary" id="save-review" disabled><svg><use href="#i-save"/></svg>保存本次评审</button><div class="secondary-actions"><button class="button" id="export" disabled><svg><use href="#i-download"/></svg>导出 CSV</button><button class="button" id="print" disabled><svg><use href="#i-print"/></svg>打印报告</button></div><button class="text-button" id="copy" disabled>复制评审结果</button></div>
+            <div class="formula-note">总分 = Σ（大指标得分 × 对应权重）<br>四项完成后生成综合分数与等级</div>
+          </section>
+          <section class="rule-card"><div class="rule-title"><span>参考等级规则</span><button class="text-button" id="edit-rules">调整规则</button></div><div class="grade-scale" id="grade-scale"></div><p class="rule-footnote">S、A、B、C 四级，按五分制判断。四个大指标与综合结果使用同一套参考规则，可调整。</p></section>
+        </aside>
+      </div>
+      <footer class="page-footer"><span class="footer-brand">评鉴 / STORY REVIEW</span><span>剧情交互 40% · 玩法交互 30% · 视听语言 30%</span></footer>
+    </main>
+  </div>
+  <dialog id="rules-dialog" aria-labelledby="rules-title"><form id="rules-form"><div class="dialog-head"><h2 id="rules-title">调整参考等级</h2><button type="button" class="icon-button close-dialog" aria-label="关闭"><svg><use href="#i-x"/></svg></button></div><p>设置 S、A、B 的五分制最低分（含该分数），低于 B 为 C。分界须满足 5 ≥ S &gt; A &gt; B &gt; 1。适用于四个大指标和综合结果，已保存记录保持原规则。</p><div class="rules-grid"><label>S 级 ≥<input name="S" type="number" min="1.1" max="5" step="0.1" required></label><label>A 级 ≥<input name="A" type="number" min="1.1" max="5" step="0.1" required></label><label>B 级 ≥<input name="B" type="number" min="1.1" max="5" step="0.1" required></label><div class="c-rule">C 级<span>低于 B 级分界</span></div></div><p class="error" id="rules-error" role="alert"></p><div class="dialog-actions"><button type="button" class="button" id="default-rules">恢复默认</button><button type="submit" class="button primary">应用规则</button></div></form></dialog>
+  <dialog id="standards-dialog" class="standards-dialog" aria-labelledby="standards-title"><div class="dialog-head"><h2 id="standards-title">评分标准说明</h2><button class="icon-button close-dialog" aria-label="关闭"><svg><use href="#i-x"/></svg></button></div><p>只对四个大指标评分：分支选项 20%、交互叙事 20%、玩法设计 30%、声画质量 30%。每项点击 1–5 分整数按钮，按原权重加权，总分满分 5 分。下列小指标仅为参考说明，无需分别评分。</p><div id="full-standards"></div><p>示例：四个大指标均为 4 分时，总分为 4 × (20% + 20% + 30% + 30%) = 4.00 分，默认 A 级。未选择表示未评分，四项全部选择后生成综合分数。小指标不参与单独计分。</p></dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5v15M12 5C8 2 3 4 3 4v15s5-2 9 1c4-3 9-1 9-1V4s-5-2-9 1Z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-branch" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M6 7v10M18 7c0 7-12 3-12 8"/></symbol>
+    <symbol id="i-story" viewBox="0 0 24 24"><path d="M5 3h10l4 4v14H5ZM14 3v5h5M8 12h8M8 16h6"/></symbol>
+    <symbol id="i-game" viewBox="0 0 24 24"><path d="M7 7h10c4 0 6 12 3 12-2 0-3-4-5-4H9c-2 0-3 4-5 4C1 19 3 7 7 7Z"/><path d="M6 11h4M8 9v4M16 10h.01M18 12h.01"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5ZM15 8c3 2 3 6 0 8M18 5c5 4 5 10 0 14"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-save" viewBox="0 0 24 24"><path d="M4 3h13l4 4v14H3V3ZM7 3v6h10V3M7 21v-8h10v8"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+    <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 8V3h10v5M7 17H3V8h18v9h-4M7 13h10v8H7ZM17 11h1"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></symbol>
+    <symbol id="i-restore" viewBox="0 0 24 24"><path d="M3 10a9 9 0 1 1 1 8M3 4v6h6M12 7v5l3 2"/></symbol>
+  </svg>
+  <script>
+  (() => {
+    'use strict';
+    const dimensions = [
+      {id:'branch',name:'分支选项',weight:20,group:'剧情交互',icon:'branch',description:'每一次选择，都应该有意义。',criteria:['用户需要能够做出戏剧性的重大决策。','有效分支，呈现给玩家的决策必须得到权衡。','有没有超越玩家固有预期的转折、道德困境或结局。','故事世界必须向玩家提供足够多的选择，但其中大部分决策都应该相对比较轻小。']},
+      {id:'story',name:'交互叙事',weight:20,group:'剧情交互',icon:'story',description:'让玩家成为故事的一部分。',criteria:['叙事手法（循环叙事、碎片叙事、空间叙事等）或玩家互动机制是否有创新。','题材设定是否有吸引力，是否有足够的想象空间。','玩法是否适配题材和游戏目标，每章节是否有明确的游戏目标，是否新颖或多元化。']},
+      {id:'game',name:'玩法设计',weight:30,group:'玩法交互',icon:'game',description:'清晰的目标，流畅的交互体验。',criteria:['目标–规则–反馈–奖励闭环是否成立。','任务设计难度合理，保持在玩家都能普遍完成但稍具挑战性的心流区间。','技术无硬伤、体验流畅，UI 交互、画面衔接、交互流畅。','是否创新新玩法。']},
+      {id:'audio',name:'声画质量',weight:30,group:'视听语言',icon:'sound',description:'用声音与画面，留下独特记忆。',criteria:['游戏配乐、交互音效是否齐全，是否优质。','角色 OC 设计是否具有类型化吸引力。','是否有关键画面记忆点。']}
+    ];
+    const defaultRules=[4.5,3.5,2.5],grades=['S','A','B','C'];
+    const key='story-review-v3',legacyKeys=['story-review-v1','story-review-v2'];
+    const $=id=>document.getElementById(id);
+    const today=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+    const blank=()=>({version:3,project:'',reviewer:'',date:today(),notes:'',scores:dimensions.map(()=>null),rules:[...defaultRules]});
+    const validScore=n=>Number.isInteger(n)&&n>=1&&n<=5;
+    const validRules=r=>Array.isArray(r)&&r.length===3&&r.every((n,i)=>Number.isFinite(n)&&n>1&&n<=5&&Math.abs(n*10-Math.round(n*10))<1e-7&&(i===0||r[i-1]>n));
+    function sanitize(raw){
+      const v=blank();
+      if(!raw||raw.version!==3)return v;
+      for(const [p,max]of [['project',100],['reviewer',50],['notes',3000]])if(typeof raw[p]==='string')v[p]=raw[p].slice(0,max);
+      if(typeof raw.date==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(raw.date))v.date=raw.date;
+      if(Array.isArray(raw.scores))v.scores=v.scores.map((_,i)=>validScore(raw.scores[i])?raw.scores[i]:null);
+      if(validRules(raw.rules))v.rules=[...raw.rules];
+      return v;
+    }
+    let state=blank(),history=[],storageAvailable=true,toastTimer;
+    try{
+      const saved=JSON.parse(localStorage.getItem(key)||'null');
+      if(saved){state=sanitize(saved.draft);if(Array.isArray(saved.history))history=saved.history.filter(r=>r?.version===3&&typeof r.id==='string'&&typeof r.savedAt==='string').slice(0,100).map(r=>({...sanitize(r),id:r.id,savedAt:r.savedAt}));}
+      if(legacyKeys.some(oldKey=>localStorage.getItem(oldKey)))$('legacy-notice').hidden=false;
+    }catch{storageAvailable=false;}
+    function persist(){
+      try{localStorage.setItem(key,JSON.stringify({version:3,draft:state,history}));storageAvailable=true;$('save-state').textContent='已自动保存于本机';return true;}
+      catch{storageAvailable=false;$('save-state').textContent='本机存储不可用，请导出结果';return false;}
+    }
+    function toast(message){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,3500);}
+    const format=n=>n.toFixed(2);
+    function gradeFor(score,rules=state.rules){const index=rules.findIndex(threshold=>score+1e-10>=threshold);return grades[index<0?3:index];}
+    function calculate(s=state){
+      const count=s.scores.filter(validScore).length;
+      const parts=s.scores.map((score,i)=>validScore(score)?score*dimensions[i].weight/100:null);
+      const total=parts.reduce((sum,part)=>sum+(part??0),0);
+      const complete=count===dimensions.length;
+      return {count,complete,parts,total,grade:complete?gradeFor(total,s.rules):null};
+    }
+    dimensions.forEach((d,i)=>{
+      const card=document.createElement('section');card.className='card';card.setAttribute('aria-labelledby',d.id+'-title');
+      card.innerHTML=`<div class="card-top"><span class="card-icon"><svg aria-hidden="true"><use href="#i-${d.icon}"/></svg></span><span class="category-tag">0${i+1} / ${d.group}</span></div><h3 id="${d.id}-title">${d.name}<span class="weight">权重 ${d.weight}%</span></h3><p class="card-description">${d.description}</p><div class="score-block"><div class="score-row"><span class="score-label" id="score-label-${i}">选择本项分数</span><span class="dimension-grade" id="dimension-grade-${i}">未评分</span></div><div class="score-buttons" id="score-buttons-${i}" role="radiogroup" aria-labelledby="${d.id}-title" aria-describedby="score-label-${i}">${[1,2,3,4,5].map(n=>`<button type="button" class="score-button" role="radio" aria-checked="false" aria-label="${d.name} ${n} 分" data-score="${n}" tabindex="${n===1?0:-1}">${n}</button>`).join('')}</div><div class="contribution"><span>加权贡献 / ${(5*d.weight/100).toFixed(1)} 分</span><b id="part-${i}">—</b></div></div><details class="criteria-reference"><summary>评分参考 · ${d.criteria.length} 条说明</summary><ol class="criteria">${d.criteria.map(c=>`<li>${c}</li>`).join('')}</ol></details>`;
+      $('cards').append(card);
+      const row=document.createElement('div');row.className='break-row';row.innerHTML=`<span class="break-dot"></span><span>${d.name} · ${d.weight}%</span><b id="break-${i}">待评分</b>`;$('breakdown').append(row);
+      const full=document.createElement('section');full.className='standard-group';full.innerHTML=`<h3>${d.group} / ${d.name} · ${d.weight}%</h3>${d.criteria.map((c,j)=>`<p>${j+1}. ${c}</p>`).join('')}`;$('full-standards').append(full);
+      const buttons=Array.from($(`score-buttons-${i}`).querySelectorAll('button'));
+      function selectScore(score){state.scores[i]=score;render();persist();}
+      buttons.forEach((button,index)=>{
+        button.addEventListener('click',()=>selectScore(Number(button.dataset.score)));
+        button.addEventListener('keydown',event=>{
+          let next;
+          if(['ArrowRight','ArrowDown'].includes(event.key))next=(index+1)%5;
+          else if(['ArrowLeft','ArrowUp'].includes(event.key))next=(index+4)%5;
+          else if(event.key==='Home')next=0;
+          else if(event.key==='End')next=4;
+          else return;
+          event.preventDefault();selectScore(next+1);buttons[next].focus();
+        });
+      });
+    });
+    function render(){
+      const r=calculate();
+      $('total').textContent=r.complete?format(r.total):'—';
+      $('total').title=r.complete?'四个大指标按原权重加权计算':'';
+      $('total-title').textContent=r.complete?'综合加权总分':'等待四项评分';
+      $('grade').textContent=r.grade?`${r.grade} 级 · ${format(r.total)} 分`:'尚未完成评分';
+      $('completion').textContent=`已完成 ${r.count} / 4 个大指标`;
+      $('progress-ring').style.strokeDashoffset=502.655*(1-(r.complete?r.total/5:r.count/4));
+      dimensions.forEach((d,i)=>{
+        const score=state.scores[i];
+        $(`dimension-grade-${i}`).textContent=score===null?'未评分':`${score} 分 · ${gradeFor(score)} 级`;
+        $(`part-${i}`).textContent=score===null?'—':format(r.parts[i])+' 分';
+        $(`break-${i}`).textContent=score===null?'待评分':format(r.parts[i]);
+        $(`score-buttons-${i}`).querySelectorAll('button').forEach(button=>{
+          const selected=Number(button.dataset.score)===score;
+          button.setAttribute('aria-checked',String(selected));
+          button.tabIndex=selected||(score===null&&button.dataset.score==='1')?0:-1;
+        });
+      });
+      for(const id of ['save-review','export','print','copy'])$(id).disabled=!r.complete;
+      $('grade-scale').replaceChildren(...grades.map((g,i)=>{
+        const el=document.createElement('div'),b=document.createElement('strong'),span=document.createElement('span');
+        b.textContent=g;span.textContent=i<3?'≥ '+state.rules[i]:'< '+state.rules[2];el.append(b,span);return el;
+      }));
+      $('print-notes').textContent=state.notes;
+    }
+    function populate(){
+      for(const [id,p]of [['project','project'],['reviewer','reviewer'],['review-date','date'],['notes','notes']])$(id).value=state[p];
+      render();
+    }
+    for(const [id,p]of [['project','project'],['reviewer','reviewer'],['review-date','date'],['notes','notes']])$(id).addEventListener('input',e=>{state[p]=e.target.value;$('print-notes').textContent=state.notes;persist();});
+    $('reset').addEventListener('click',()=>{
+      if((state.project||state.reviewer||state.notes||state.scores.some(n=>n!==null))&&!confirm('开始新的评审？当前草稿会清空，已保存的评审记录会保留。'))return;
+      const rules=[...state.rules];state=blank();state.rules=rules;populate();persist();$('project').focus();toast('已新建评审');
+    });
+    function renderHistory(){
+      $('history-count').textContent=history.length?`${history.length} 条记录 · 仅此浏览器可见`:'仅此浏览器可见';$('history-list').replaceChildren();
+      if(!history.length){const empty=document.createElement('div');empty.className='empty-history';empty.textContent='还没有评审记录。完成四个大指标评分后，点击「保存本次评审」。';$('history-list').append(empty);return;}
+      history.forEach(record=>{
+        const r=calculate(record),row=document.createElement('div');row.className='history-item';
+        const text=document.createElement('div'),name=document.createElement('div'),meta=document.createElement('div');
+        name.className='history-name';name.textContent=record.project||'未命名作品';meta.className='history-meta';meta.textContent=[record.reviewer||'未填写评审人',record.date||'未填写日期'].join(' · ');text.append(name,meta);
+        const controls=document.createElement('div');controls.className='history-controls';
+        const score=document.createElement('span');score.className='history-score';score.textContent=r.complete?`${format(r.total)} / ${r.grade}`:'未完成';
+        const load=document.createElement('button');load.className='icon-button';load.title='打开此记录';load.setAttribute('aria-label','打开评审：'+(record.project||'未命名作品'));load.innerHTML='<svg><use href="#i-restore"/></svg>';
+        load.onclick=()=>{if(!confirm('打开此记录将替换当前草稿，是否继续？'))return;state=sanitize(record);populate();persist();window.scrollTo({top:0,behavior:'smooth'});toast('已载入四项评分及其等级规则');};
+        const remove=document.createElement('button');remove.className='icon-button';remove.title='删除记录';remove.setAttribute('aria-label','删除评审：'+(record.project||'未命名作品'));remove.innerHTML='<svg><use href="#i-trash"/></svg>';
+        remove.onclick=()=>{if(!confirm('确定删除此条本机评审记录？'))return;const previous=history;history=history.filter(h=>h.id!==record.id);if(!persist()){history=previous;toast('删除失败：本机存储不可用');return;}renderHistory();toast('记录已删除');};
+        controls.append(score,load,remove);row.append(text,controls);$('history-list').append(row);
+      });
+    }
+    $('save-review').addEventListener('click',()=>{
+      if(!calculate().complete)return;if(history.length>=100){toast('最多保存 100 条记录，请先导出并删除旧记录');return;}
+      const record={...JSON.parse(JSON.stringify(state)),id:globalThis.crypto?.randomUUID?.()||Date.now()+'-'+Math.random().toString(36).slice(2),savedAt:new Date().toISOString()};
+      history.unshift(record);if(!persist()){history.shift();toast('保存失败：请使用导出 CSV 保留结果');return;}renderHistory();toast('评审已保存，可在评审记录中查看');
+    });
+    const ruleText=s=>`S≥${s.rules[0]}；A≥${s.rules[1]}；B≥${s.rules[2]}；C<${s.rules[2]}（1–5 分制）`;
+    function report(){
+      const r=calculate();
+      const details=dimensions.map((d,i)=>`${d.name}（权重 ${d.weight}%）：${state.scores[i]} / 5 · ${gradeFor(state.scores[i])} 级，加权贡献 ${format(r.parts[i])} 分`).join('\n');
+      return `作品评审：${state.project||'未命名作品'}\n评审人：${state.reviewer||'未填写'}\n评审日期：${state.date||'未填写'}\n\n${details}\n\n综合总分：${format(r.total)} / 5\n参考等级：${r.grade}\n等级规则：${ruleText(state)}\n计算方式：四项得分分别按 20% / 20% / 30% / 30% 加权${state.notes?'\n\n评审备注：\n'+state.notes:''}`;
+    }
+    function download(content,type,filename){const url=URL.createObjectURL(new Blob([content],{type}));const a=document.createElement('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+    $('export').addEventListener('click',()=>{
+      const r=calculate();if(!r.complete)return;
+      const rows=[['作品名称',state.project],['评审人',state.reviewer],['评审日期',state.date],[],['评分指标','权重','得分（1–5）','等级','加权贡献'],...dimensions.map((d,i)=>[d.name,d.weight+'%',state.scores[i],gradeFor(state.scores[i]),format(r.parts[i])])];
+      rows.push([],['综合总分（满分5）',format(r.total)],['参考等级',r.grade],['等级规则',ruleText(state)],['计算方式','Σ（大指标得分 × 对应权重）'],['评审备注',state.notes]);
+      const cell=value=>{let text=String(value??'');if(/^[\s]*[=+@-]/.test(text)||/^[\t\r]/.test(text))text="'"+text;return '"'+text.replaceAll('"','""')+'"';};
+      const csv='\uFEFF'+rows.map(row=>row.map(cell).join(',')).join('\r\n');
+      const filename=(state.project||'作品评审').replace(/[<>:"/\\|?*\x00-\x1f]/g,'_').slice(0,80)+'_'+(state.date||today())+'.csv';
+      download(csv,'text/csv;charset=utf-8;',filename);toast('已导出全部指标、分数和等级');
+    });
+    $('export-legacy').addEventListener('click',()=>{
+      try{
+        const backup={};for(const oldKey of legacyKeys){const raw=localStorage.getItem(oldKey);if(raw)backup[oldKey]=raw;}
+        if(!Object.keys(backup).length){toast('没有找到旧版记录');return;}
+        download(JSON.stringify(backup,null,2),'application/json;charset=utf-8','评审记录_旧版数据备份.json');toast('旧版数据已导出备份，原数据保留');
+      }catch{toast('无法读取旧版数据');}
+    });
+    $('print').addEventListener('click',()=>{if(calculate().complete)window.print();});
+    $('copy').addEventListener('click',async()=>{
+      if(!calculate().complete)return;const text=report();
+      try{await navigator.clipboard.writeText(text);toast('评审结果已复制');}
+      catch{const area=document.createElement('textarea');area.value=text;area.style.cssText='position:fixed;top:0;left:-9999px';document.body.append(area);area.select();let ok=false;try{ok=document.execCommand('copy');}catch{}area.remove();toast(ok?'评审结果已复制':'无法访问剪贴板，请使用导出 CSV');}
+    });
+    $('edit-rules').onclick=()=>{state.rules.forEach((n,i)=>$('rules-form').elements[grades[i]].value=n);$('rules-error').textContent='';$('rules-dialog').showModal();};
+    $('default-rules').onclick=()=>defaultRules.forEach((n,i)=>$('rules-form').elements[grades[i]].value=n);
+    $('rules-form').onsubmit=event=>{
+      event.preventDefault();const rules=grades.slice(0,3).map(g=>Number($('rules-form').elements[g].value));
+      if(!validRules(rules)){$('rules-error').textContent='请按 S > A > B 的顺序输入分界，范围为 1.1–5，低于 B 为 C。';return;}
+      state.rules=rules;render();persist();$('rules-dialog').close();toast('四项指标及综合结果的等级规则已更新');
+    };
+    $('standards-nav').onclick=()=>$('standards-dialog').showModal();
+    document.querySelectorAll('.close-dialog').forEach(button=>button.onclick=()=>button.closest('dialog').close());
+    document.querySelectorAll('dialog').forEach(dialog=>dialog.addEventListener('click',event=>{if(event.target===dialog){const b=dialog.getBoundingClientRect();if(event.clientX<b.left||event.clientX>b.right||event.clientY<b.top||event.clientY>b.bottom)dialog.close();}}));
+    populate();renderHistory();if(!storageAvailable)$('save-state').textContent='本机存储不可用，请导出结果';
+  })();
+  </script>
+</body>
+</html>
